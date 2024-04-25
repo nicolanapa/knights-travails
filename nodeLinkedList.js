@@ -171,11 +171,11 @@ class LinkedList {
 		let current = this.listHead;
 
 		while (current !== null) {
-			string += "( " + current.value + " ) -> ";
+			string += "-> ( " + current.value + " ) ";
 			current = current.nextNode;
 		}
 
-		string += null;
+		//string += null;
 		return string;
 	}
 

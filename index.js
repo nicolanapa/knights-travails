@@ -4,6 +4,27 @@ function getRandomMove(max = 2) {
 	return Math.floor(Math.random() * max);
 }
 
+function knightRecaller(start, end, times = 30) {
+	let knight = new LinkedList();
+	knight.append(start);
+
+	knightListCreator(knight, end);
+	let knight2 = knight;
+
+	for (let i = 0; i < times; i++) {
+		knight = new LinkedList();
+		knight.append(start);
+
+		knightListCreator(knight, end);
+
+		if (knight2.find(end) >= knight.find(end)) {
+			knight2 = knight;
+		}
+	}
+
+	knightDataDisplayer(knight2, end);
+}
+
 function knightListCreator(knight, end) {
 	//let moves = 0;
 
@@ -195,12 +216,7 @@ function knightMoves(start, end) {
 		[1, 0, 1, 0, 1, 0, 1, 0],
 	];*/
 
-	let knight = new LinkedList();
-	knight.append(start);
-
-	knightListCreator(knight, end);
-
-	knightDataDisplayer(knight, end);
+	knightRecaller(start, end);
 }
 
 /*
@@ -220,11 +236,10 @@ function knightMoves(start, end) {
 
 function test() {
 	knightMoves([0, 0], [1, 2]);
-	//knightMoves([0, 0], [3, 3]);
-	//knightMoves([3, 3], [0, 0]);
-	//knightMoves([0, 0], [7, 7]);
-	//knightMoves([0, 0], [7, 7]);
-	//knightMoves([3, 3], [4, 3]);
+	knightMoves([0, 0], [3, 3]);
+	knightMoves([3, 3], [0, 0]);
+	knightMoves([0, 0], [7, 7]);
+	knightMoves([3, 3], [4, 3]);
 }
 
 test();
