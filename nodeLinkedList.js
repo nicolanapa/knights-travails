@@ -72,7 +72,7 @@ class LinkedList {
 	// Returns the tail (last node) of a list
 	// Working
 	tail() {
-		console.log("Returning tail...");
+		//console.log("Returning tail...");
 		let current = this.listHead;
 
 		while (current.nextNode !== null) {
