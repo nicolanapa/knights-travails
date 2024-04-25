@@ -1,5 +1,9 @@
 import { Node, LinkedList } from "./nodeLinkedList.js";
 
+function getRandomMove(max = 2) {
+	return Math.floor(Math.random() * max);
+}
+
 function knightListCreator(knight, end) {
 	//let moves = 0;
 
@@ -175,10 +179,6 @@ function knightDataDisplayer(knight, end) {
 	console.log("Moves:", knight.find(end));
 	console.log(knight.toString());
 	console.log();
-}
-
-function getRandomMove(max = 2) {
-	return Math.floor(Math.random() * max);
 }
 
 function knightMoves(start, end) {
