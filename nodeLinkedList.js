@@ -123,13 +123,13 @@ class LinkedList {
 		let current = this.listHead;
 
 		while (current.nextNode !== null) {
-			if (current.value.toString() === value.toString()) {
+			if (JSON.stringify(current.value) === JSON.stringify(value)) {
 				return true;
 			}
 			current = current.nextNode;
 		}
 
-		if (current.value.toString() === value.toString()) {
+		if (JSON.stringify(current.value) === JSON.stringify(value)) {
 			return true;
 		} else {
 			return false;
@@ -148,13 +148,13 @@ class LinkedList {
 		while (current.nextNode !== null) {
 			i += 1;
 
-			if (current.value === value) {
+			if (JSON.stringify(current.value) === JSON.stringify(value)) {
 				return i;
 			}
 			current = current.nextNode;
 		}
 
-		if (current.value === value) {
+		if (JSON.stringify(current.value) === JSON.stringify(value)) {
 			i += 1;
 			return i;
 		} else {

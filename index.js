@@ -21,11 +21,10 @@ function knightMoves(start, end) {
 	let knight = new LinkedList();
 	knight.append(start);
 	let moves = 0;
-	while (/*knight.contains(end) || */ moves !== 30) {
+
+	while (!knight.contains(end) /* && moves <= 1000*/) {
 		// Make a function for all of this
-		moves++;
-		let randomValue1 = getRandomMove() + 1;
-		let randomValue2 = getRandomMove() + 1;
+
 		// If 1, it will to 1 in any direction, and will add/reduce 2 to the left/right
 		// If 2, otherwise
 		let random2or1First = getRandomMove() + 1;
@@ -177,6 +176,7 @@ function knightMoves(start, end) {
 		}
 
 		console.log("Tail", knight.tail()[0], knight.tail()[1]);
+		moves++;
 	}
 
 	console.log("Find out if", end, "exists", knight.contains(end));
