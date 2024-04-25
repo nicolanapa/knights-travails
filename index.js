@@ -1,26 +1,7 @@
 import { Node, LinkedList } from "./nodeLinkedList.js";
 
-function getRandomMove(max = 2) {
-	return Math.floor(Math.random() * max);
-}
-
-function knightMoves(start, end) {
-	// Data structure with all nodes linked?
-	// Use linked lists?
-	let board = [
-		[0, 1, 0, 1, 0, 1, 0, 1],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 0, 1, 0, 1],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 0, 1, 0, 1],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-		[0, 1, 0, 1, 0, 1, 0, 1],
-		[1, 0, 1, 0, 1, 0, 1, 0],
-	];
-
-	let knight = new LinkedList();
-	knight.append(start);
-	let moves = 0;
+function knightListCreator(knight, end) {
+	//let moves = 0;
 
 	while (!knight.contains(end) /* && moves <= 1000*/) {
 		// Make a function for all of this
@@ -28,7 +9,7 @@ function knightMoves(start, end) {
 		// If 1, it will to 1 in any direction, and will add/reduce 2 to the left/right
 		// If 2, otherwise
 		let random2or1First = getRandomMove() + 1;
-		console.log("Depends on", random2or1First);
+		//console.log("Depends on", random2or1First);
 
 		if (random2or1First === 1) {
 			// 1 in any direction
@@ -173,16 +154,58 @@ function knightMoves(start, end) {
 				// Should not happen with all the IF controlling on knight.tail()[0]
 				console.log("How did we get here? 2");
 			}
+
+			if (knight.tail()[1] <= 0 || knight.tail()[2] >= 8) {
+				// Should not happen with all the IF controlling on knight.tail()[0]
+				console.log("How did we get here? 3");
+			}
 		}
 
-		console.log("Tail", knight.tail()[0], knight.tail()[1]);
-		moves++;
+		//console.log("Tail", knight.tail()[0], knight.tail()[1]);
+		//moves++;
 	}
 
-	console.log("Find out if", end, "exists", knight.contains(end));
+	//return moves;
+}
+
+function knightDataDisplayer(knight, end) {
+	console.log();
+	console.log("Find out if", end, "exists:", knight.contains(end));
+	console.log("Location:", knight.find(end));
+	console.log("Moves:", knight.find(end));
+	console.log(knight.toString());
+	console.log();
+}
+
+function getRandomMove(max = 2) {
+	return Math.floor(Math.random() * max);
+}
+
+function knightMoves(start, end) {
+	// Data structure with all nodes linked?
+	// Use linked lists?
+	/*let board = [
+		[0, 1, 0, 1, 0, 1, 0, 1],
+		[1, 0, 1, 0, 1, 0, 1, 0],
+		[0, 1, 0, 1, 0, 1, 0, 1],
+		[1, 0, 1, 0, 1, 0, 1, 0],
+		[0, 1, 0, 1, 0, 1, 0, 1],
+		[1, 0, 1, 0, 1, 0, 1, 0],
+		[0, 1, 0, 1, 0, 1, 0, 1],
+		[1, 0, 1, 0, 1, 0, 1, 0],
+	];*/
+
+	let knight = new LinkedList();
+	knight.append(start);
+	//let moves = 0;
+
+	knightListCreator(knight, end);
+
+	knightDataDisplayer(knight, end);
+	/*console.log("Find out if", end, "exists", knight.contains(end));
 	console.log("Location", knight.find(end));
 	console.log("Moves", moves);
-	console.log(knight.toString());
+	console.log(knight.toString());*/
 }
 
 /*
@@ -195,13 +218,18 @@ function knightMoves(start, end) {
 // 2 in any direction + 1 in left/right
 // 1 in any direction + 2 in left/right
 
+/*
+	Make an function which calls for x times and gets/updates the best
+	result from the x knightMoves() calls
+*/
+
 function test() {
 	knightMoves([0, 0], [1, 2]);
-	/*knightMoves([0, 0], [3, 3]);
-	knightMoves([3, 3], [0, 0]);
-	knightMoves([0, 0], [7, 7]);
-	knightMoves([0, 0], [7, 7]);
-	knightMoves([3, 3], [4, 3]);*/
+	//knightMoves([0, 0], [3, 3]);
+	//knightMoves([3, 3], [0, 0]);
+	//knightMoves([0, 0], [7, 7]);
+	//knightMoves([0, 0], [7, 7]);
+	//knightMoves([3, 3], [4, 3]);
 }
 
 test();
