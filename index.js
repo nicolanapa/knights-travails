@@ -159,7 +159,7 @@ function knightListCreator(knight, end) {
 				console.log("How did we get here? 2");
 			}
 
-			if (knight.tail()[1] <= 0 || knight.tail()[2] >= 8) {
+			if (knight.tail()[1] <= -1 || knight.tail()[2] >= 8) {
 				// Should not happen with all the IF controlling on knight.tail()[0]
 				console.log("How did we get here? 3");
 			}
@@ -174,16 +174,16 @@ function knightListCreator(knight, end) {
 
 function knightDataDisplayer(knight, end) {
 	console.log();
-	console.log("Find out if", end, "exists:", knight.contains(end));
-	console.log("Location:", knight.find(end));
-	console.log("Moves:", knight.find(end));
+	//console.log("Find out if", end, "exists:", knight.contains(end));
+	//console.log("Location:", knight.find(end));
+	console.log("You made it in", knight.find(end), "moves...");
+	console.log("Here's your path:");
 	console.log(knight.toString());
 	console.log();
 }
 
 function knightMoves(start, end) {
-	// Data structure with all nodes linked?
-	// Use linked lists?
+	// Keeping to refer at
 	/*let board = [
 		[0, 1, 0, 1, 0, 1, 0, 1],
 		[1, 0, 1, 0, 1, 0, 1, 0],
@@ -197,15 +197,10 @@ function knightMoves(start, end) {
 
 	let knight = new LinkedList();
 	knight.append(start);
-	//let moves = 0;
 
 	knightListCreator(knight, end);
 
 	knightDataDisplayer(knight, end);
-	/*console.log("Find out if", end, "exists", knight.contains(end));
-	console.log("Location", knight.find(end));
-	console.log("Moves", moves);
-	console.log(knight.toString());*/
 }
 
 /*

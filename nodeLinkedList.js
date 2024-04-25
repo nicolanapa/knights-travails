@@ -13,7 +13,7 @@ class LinkedList {
 	// Appends it at the end of a list
 	// Working
 	append(value) {
-		console.log("Appending", "'" + value + "'", "to the end");
+		//console.log("Appending", "'" + value + "'", "to the end");
 
 		let new_node = new Node(value);
 
@@ -35,7 +35,7 @@ class LinkedList {
 	// Prepends it at the start of a list
 	// Working
 	prepend(value) {
-		console.log("Prepending", "'" + value + "'", "to the start");
+		//console.log("Prepending", "'" + value + "'", "to the start");
 
 		let new_node = new Node(value);
 		new_node.nextNode = this.listHead;
@@ -48,7 +48,7 @@ class LinkedList {
 	// 1 to i
 	// Working
 	size() {
-		console.log("Calculating size...");
+		//console.log("Calculating size...");
 
 		let i = 0;
 		let current = this.listHead;
@@ -64,7 +64,7 @@ class LinkedList {
 	// Returns the head (first node) of a list
 	// Working
 	head() {
-		console.log("Returning head (", this.listHead.value, ")");
+		//console.log("Returning head (", this.listHead.value, ")");
 
 		return this.listHead.value;
 	}
@@ -86,7 +86,7 @@ class LinkedList {
 	// 0 to i
 	// Working
 	at(index) {
-		console.log("Returning your node at", index);
+		//console.log("Returning your node at", index);
 
 		let current = this.listHead;
 		for (let i = 0; i < index; i++) {
@@ -102,7 +102,7 @@ class LinkedList {
 	// Removes the last element/node from a list
 	// Working
 	pop() {
-		console.log("Removing last node...");
+		//console.log("Removing last node...");
 		let current = this.listHead;
 
 		while (current.nextNode.nextNode !== null) {
@@ -140,7 +140,7 @@ class LinkedList {
 	// 0 to i
 	// Working
 	find(value) {
-		console.log("Finding:", value);
+		//console.log("Finding:", value);
 
 		let i = -1;
 		let current = this.listHead;
@@ -165,7 +165,7 @@ class LinkedList {
 	// Return the whole list to a string readable format
 	// Working
 	toString() {
-		console.log("Converting toString" /*, JSON.stringify(this.listHead, null, 4)*/);
+		//console.log("Converting toString" /*, JSON.stringify(this.listHead, null, 4)*/);
 
 		let string = "";
 		let current = this.listHead;
@@ -183,7 +183,7 @@ class LinkedList {
 	//	0 to index
 	// Working
 	insertAt(value, index) {
-		console.log("Trying to insert:", value, "in", index);
+		//console.log("Trying to insert:", value, "in", index);
 
 		if (index === 0) {
 			return this.prepend(value);
@@ -223,7 +223,7 @@ class LinkedList {
 	// 0 to index
 	// Working
 	removeAt(index) {
-		console.log("Trying to remove node at index", index);
+		//console.log("Trying to remove node at index", index);
 
 		if (index === -1) {
 			return this.pop();
