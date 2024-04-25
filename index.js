@@ -4,7 +4,7 @@ function getRandomMove(max = 2) {
 	return Math.floor(Math.random() * max);
 }
 
-function knightRecaller(start, end, times = 30) {
+function knightRecaller(start, end, times = 40) {
 	let knight = new LinkedList();
 	knight.append(start);
 
@@ -12,6 +12,7 @@ function knightRecaller(start, end, times = 30) {
 	let knight2 = knight;
 	let time1;
 	let time2;
+	let time3;
 
 	for (let i = 0; i < times; i++) {
 		knight = new LinkedList();
@@ -26,7 +27,7 @@ function knightRecaller(start, end, times = 30) {
 	}
 
 	// For better rechecking if it took too many moves
-	if (time1 >= 5) {
+	if (time1 >= 3) {
 		let knight3 = knight2;
 
 		for (let i = 0; i < times; i++) {
@@ -35,15 +36,33 @@ function knightRecaller(start, end, times = 30) {
 
 			knightListCreator(knight, end);
 
-			if (knight3.find(end) >= time1) {
+			if (knight3.find(end) > time1) {
 				knight3 = knight;
 				time2 = knight3.find(end);
 			}
 		}
 
-		// Should be false most of the times
-		console.log(time2 < time1);
-		return time2 < time1 ? knightDataDisplayer(knight3, end) : knightDataDisplayer(knight2, end);
+		if (time2 >= 4) {
+			let knight4 = knight3;
+
+			for (let i = 0; i < times * 3; i++) {
+				knight = new LinkedList();
+				knight.append(start);
+
+				knightListCreator(knight, end);
+
+				if (knight4.find(end) > time2) {
+					knight4 = knight;
+					time3 = knight4.find(end);
+				}
+			}
+
+			// Should be false most of the times
+			console.log(time3 < time2);
+			return time3 < time2 ? knightDataDisplayer(knight4, end) : knightDataDisplayer(knight3, end);
+		} else {
+			return time2 < time1 ? knightDataDisplayer(knight3, end) : knightDataDisplayer(knight2, end);
+		}
 	} else {
 		return knightDataDisplayer(knight2, end);
 	}
