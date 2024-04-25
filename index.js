@@ -36,8 +36,8 @@ function knightMoves(start, end) {
 	}*/
 
 	let i = 0;
-	while (/*!knight.contains(end)*/ i !== 10) {
-		setTimeout(() => "", 3000);
+	while (/*!knight.contains(end)*/ i !== 50) {
+		// Make a function for all of this
 		i++;
 		let randomValue1 = getRandomMove() + 1;
 		let randomValue2 = getRandomMove() + 1;
@@ -47,28 +47,110 @@ function knightMoves(start, end) {
 		console.log("Depends on", random2or1First);
 
 		if (random2or1First === 1) {
+			// 1 in any direction
+
 			if (knight.tail()[0] === 0) {
+				if (getRandomMove()) {
+					// 2 for Top but +- 1 or 1 Top but +- 2
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+					} else {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+					}
+				} else {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+					} else {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+					}
+				}
+
 				knight.append([knight.tail()[0] + 1, knight.tail()[1] + getRandomMove()]);
-			} else if (knight.tail()[0] > 0 && knight.tail()[0] < 7) {
-				knight.append([knight.tail()[0] + 1, knight.tail()[1] + getRandomMove()]);
+			} else if (knight.tail()[0] >= 1 && knight.tail()[0] <= 6) {
+				// 1 for Top, 0 for Bottom
+
+				if (getRandomMove()) {
+					// 1 for +2 Right, 0 for -2 Left
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+					} else {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+					}
+				} else {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+					} else {
+						knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+					}
+				}
 			} else if (knight.tail()[0] === 7) {
-				knight.append([knight.tail()[0] - 1, knight.tail()[1] - getRandomMove()]);
+				if (getRandomMove()) {
+					knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+				} else {
+					knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+				}
+			} else if (knight.tail()[0] <= 0 || knight.tail()[0] >= 8) {
+				// Should not happen with all the IF controlling on knight.tail()[0]
+				console.log("How did we get here?");
 			}
 		} else if (random2or1First === 2) {
+			// 2 in any direction
+
 			if (knight.tail()[0] === 0) {
-				knight.append([knight.tail()[0] + 2, knight.tail()[1] + getRandomMove()]);
-			} else if (knight.tail()[0] > 0 && knight.tail()[0] < 7) {
-				knight.append([knight.tail()[0] + 2, knight.tail()[1] + getRandomMove()]);
+				if (getRandomMove()) {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+					} else {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+					}
+				} else {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+					} else {
+						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+					}
+				}
+			} else if (knight.tail()[0] >= 2 && knight.tail()[0] <= 5) {
+				// 1 for any direction +, 0 for any direction -
+
+				if (getRandomMove()) {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+					} else {
+						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+					}
+				} else {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+					} else {
+						knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+					}
+				}
 			} else if (knight.tail()[0] === 7) {
-				knight.append([knight.tail()[0] - 2, knight.tail()[1] - getRandomMove()]);
+				if (getRandomMove()) {
+					// 2 for Bottom but +- 1 or 1 bottom but +- 2
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+					} else {
+						knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+					}
+				} else {
+					if (getRandomMove()) {
+						knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+					} else {
+						knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+					}
+				}
+			} else if (knight.tail()[0] <= 0 || knight.tail()[0] >= 8) {
+				// Should not happen with all the IF controlling on knight.tail()[0]
+				console.log("How did we get here?");
 			}
 		}
 
 		console.log("Tail", knight.tail()[0], knight.tail()[1]);
-		
 	}
 
-	console.log();
+	console.log("Moves", i);
 	console.log(knight.toString());
 }
 
