@@ -10,6 +10,8 @@ function knightRecaller(start, end, times = 30) {
 
 	knightListCreator(knight, end);
 	let knight2 = knight;
+	let time1;
+	let time2;
 
 	for (let i = 0; i < times; i++) {
 		knight = new LinkedList();
@@ -19,10 +21,32 @@ function knightRecaller(start, end, times = 30) {
 
 		if (knight2.find(end) >= knight.find(end)) {
 			knight2 = knight;
+			time1 = knight2.find(end);
 		}
 	}
 
-	knightDataDisplayer(knight2, end);
+	// For better rechecking if it took too many moves
+	if (time1 >= 5) {
+		let knight3 = knight2;
+
+		for (let i = 0; i < times; i++) {
+			knight = new LinkedList();
+			knight.append(start);
+
+			knightListCreator(knight, end);
+
+			if (knight3.find(end) >= time1) {
+				knight3 = knight;
+				time2 = knight3.find(end);
+			}
+		}
+
+		// Should be false most of the times
+		console.log(time2 < time1);
+		return time2 < time1 ? knightDataDisplayer(knight3, end) : knightDataDisplayer(knight2, end);
+	} else {
+		return knightDataDisplayer(knight2, end);
+	}
 }
 
 function knightListCreator(knight, end) {
