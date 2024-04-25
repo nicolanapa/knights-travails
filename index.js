@@ -18,27 +18,12 @@ function knightMoves(start, end) {
 		[1, 0, 1, 0, 1, 0, 1, 0],
 	];
 
-	/*for (let i = 0; i < 1; i++) {
-		if (start[0] === end[0]) {
-			if (start[1] === end[1]) {
-				console.log("finished");
-			}
-		}
-	}*/
-
 	let knight = new LinkedList();
 	knight.append(start);
-
-	/*if (start[0] === 0) {
-		knight.append([2, 1]);
-	} else if (start[0] > 0 && start[0] < 7) {
-	} else if (start[0] === 7) {
-	}*/
-
-	let i = 0;
-	while (/*!knight.contains(end)*/ i !== 50) {
+	let moves = 0;
+	while (/*knight.contains(end) || */ moves !== 30) {
 		// Make a function for all of this
-		i++;
+		moves++;
 		let randomValue1 = getRandomMove() + 1;
 		let randomValue2 = getRandomMove() + 1;
 		// If 1, it will to 1 in any direction, and will add/reduce 2 to the left/right
@@ -53,45 +38,65 @@ function knightMoves(start, end) {
 				if (getRandomMove()) {
 					// 2 for Top but +- 1 or 1 Top but +- 2
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						if (knight.tail()[1] >= 1 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						}
 					}
 				} else {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						}
 					}
 				}
-
-				knight.append([knight.tail()[0] + 1, knight.tail()[1] + getRandomMove()]);
 			} else if (knight.tail()[0] >= 1 && knight.tail()[0] <= 6) {
 				// 1 for Top, 0 for Bottom
 
 				if (getRandomMove()) {
 					// 1 for +2 Right, 0 for -2 Left
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						}
 					}
 				} else {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
-					} else {
-						knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+						if (getRandomMove()) {
+							if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+								knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+							}
+						} else {
+							if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+								knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+							}
+						}
 					}
 				}
 			} else if (knight.tail()[0] === 7) {
 				if (getRandomMove()) {
-					knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+					if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+						knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+					}
 				} else {
-					knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+					if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+						knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+					}
 				}
 			} else if (knight.tail()[0] <= 0 || knight.tail()[0] >= 8) {
 				// Should not happen with all the IF controlling on knight.tail()[0]
-				console.log("How did we get here?");
+				console.log("How did we get here? 1");
 			}
 		} else if (random2or1First === 2) {
 			// 2 in any direction
@@ -99,15 +104,23 @@ function knightMoves(start, end) {
 			if (knight.tail()[0] === 0) {
 				if (getRandomMove()) {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						if (knight.tail()[1] >= 1 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						}
 					}
 				} else {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] + 2]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] + 1, knight.tail()[1] - 2]);
+						}
 					}
 				}
 			} else if (knight.tail()[0] >= 2 && knight.tail()[0] <= 5) {
@@ -115,42 +128,60 @@ function knightMoves(start, end) {
 
 				if (getRandomMove()) {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] + 1]);
+						}
 					} else {
-						knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						if (knight.tail()[1] >= 1 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] + 2, knight.tail()[1] - 1]);
+						}
 					}
 				} else {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+						}
 					} else {
-						knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+						if (knight.tail()[1] >= 1 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+						}
 					}
 				}
 			} else if (knight.tail()[0] === 7) {
 				if (getRandomMove()) {
 					// 2 for Bottom but +- 1 or 1 bottom but +- 2
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 6) {
+							knight.append([knight.tail()[0] - 2, knight.tail()[1] + 1]);
+						}
 					} else {
-						knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+						if (knight.tail()[1] >= 1 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] - 2, knight.tail()[1] - 1]);
+						}
 					}
 				} else {
 					if (getRandomMove()) {
-						knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+						if (knight.tail()[1] >= 0 && knight.tail()[1] <= 5) {
+							knight.append([knight.tail()[0] - 1, knight.tail()[1] + 2]);
+						}
 					} else {
-						knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+						if (knight.tail()[1] >= 2 && knight.tail()[1] <= 7) {
+							knight.append([knight.tail()[0] - 1, knight.tail()[1] - 2]);
+						}
 					}
 				}
 			} else if (knight.tail()[0] <= 0 || knight.tail()[0] >= 8) {
 				// Should not happen with all the IF controlling on knight.tail()[0]
-				console.log("How did we get here?");
+				console.log("How did we get here? 2");
 			}
 		}
 
 		console.log("Tail", knight.tail()[0], knight.tail()[1]);
 	}
 
-	console.log("Moves", i);
+	console.log("Find out if", end, "exists", knight.contains(end));
+	console.log("Location", knight.find(end));
+	console.log("Moves", moves);
 	console.log(knight.toString());
 }
 

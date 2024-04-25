@@ -118,18 +118,18 @@ class LinkedList {
 	// Returns true if a list contains a given value, otherwise false
 	// Working
 	contains(value) {
-		console.log("Checking if it contains:", value);
+		//console.log("Checking if it contains:", value);
 
 		let current = this.listHead;
 
 		while (current.nextNode !== null) {
-			if (current.value === value) {
+			if (current.value.toString() === value.toString()) {
 				return true;
 			}
 			current = current.nextNode;
 		}
 
-		if (current.value === value) {
+		if (current.value.toString() === value.toString()) {
 			return true;
 		} else {
 			return false;
