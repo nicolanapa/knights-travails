@@ -4,7 +4,7 @@ function getRandomMove(max = 2) {
 	return Math.floor(Math.random() * max);
 }
 
-function knightRecaller(start, end, times = 40) {
+function knightRecaller(start, end, times = 50) {
 	let knight = new LinkedList();
 	knight.append(start);
 
@@ -30,7 +30,7 @@ function knightRecaller(start, end, times = 40) {
 	if (time1 >= 3) {
 		let knight3 = knight2;
 
-		for (let i = 0; i < times; i++) {
+		for (let i = 0; i < times * 2; i++) {
 			knight = new LinkedList();
 			knight.append(start);
 
@@ -42,7 +42,7 @@ function knightRecaller(start, end, times = 40) {
 			}
 		}
 
-		if (time2 >= 4) {
+		if (time2 >= 3) {
 			let knight4 = knight3;
 
 			for (let i = 0; i < times * 3; i++) {
@@ -61,6 +61,7 @@ function knightRecaller(start, end, times = 40) {
 			console.log(time3 < time2);
 			return time3 < time2 ? knightDataDisplayer(knight4, end) : knightDataDisplayer(knight3, end);
 		} else {
+			console.log(time2 < time1);
 			return time2 < time1 ? knightDataDisplayer(knight3, end) : knightDataDisplayer(knight2, end);
 		}
 	} else {
